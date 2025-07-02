@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.Random; // Importei Random para o caso de querer usar em Exemplos
 
 public class App {
 
@@ -12,10 +13,10 @@ public class App {
 
         // Usando um Map para organizar os conjuntos de grafos e seus nomes
         Map<String, ArrayList<Grafo>> conjuntosDeGrafos = new LinkedHashMap<>();
-        conjuntosDeGrafos.put("10 Vértices", exemplos.grafos10());
-        conjuntosDeGrafos.put("20 Vértices", exemplos.grafos20());
-        conjuntosDeGrafos.put("40 Vértices", exemplos.grafos40());
-        conjuntosDeGrafos.put("80 Vértices", exemplos.grafos80());
+        conjuntosDeGrafos.put("20 Vértices (Denso)", exemplos.grafos20());
+        conjuntosDeGrafos.put("40 Vértices (Denso)", exemplos.grafos40());
+        conjuntosDeGrafos.put("80 Vértices (Denso)", exemplos.grafos80());
+        conjuntosDeGrafos.put("160 Vértices (Denso)", exemplos.grafos160());
 
         // Executa os testes para cada conjunto de grafos
         for (Map.Entry<String, ArrayList<Grafo>> entry : conjuntosDeGrafos.entrySet()) {
@@ -25,7 +26,7 @@ public class App {
 
     /**
      * Executa a bateria de testes para um conjunto específico de grafos.
-     * @param nomeConjunto O nome do conjunto de grafos (ex: "Grafos com 10 Vértices").
+     * @param nomeConjunto O nome do conjunto de grafos (ex: "Grafos com 20 Vértices").
      * @param grafos A lista de grafos a ser testada.
      */
     public static void executarTestes(String nomeConjunto, ArrayList<Grafo> grafos) {
@@ -89,11 +90,18 @@ public class App {
             cores.add(numCores);
         }
 
-        double mediaTempo = calcularMediaLong(tempos);
+        // --- ALTERAÇÃO AQUI ---
+        
+        // 1. Calcular a média de tempo em nanosegundos
+        double mediaTempoNano = calcularMediaLong(tempos);
+        // 2. Converter a média para milissegundos
+        double mediaTempoMilli = mediaTempoNano / 1_000_000.0;
+
         double mediaCores = calcularMediaInt(cores);
 
-        System.out.printf("    - %-15s | Média de Cores: %-5.1f | Tempo Médio: %.2f ns\n",
-                nomeAlgo, mediaCores, mediaTempo);
+        // 3. Atualizar o printf para exibir em milissegundos (ms) e com mais precisão decimal
+        System.out.printf("     - %-15s | Média de Cores: %-5.1f | Tempo Médio: %.4f ms\n",
+                nomeAlgo, mediaCores, mediaTempoMilli);
     }
 
     // --- Métodos de cálculo de média e utilitários ---
