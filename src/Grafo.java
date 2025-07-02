@@ -37,4 +37,10 @@ public class Grafo {
     public ArrayList<Vertice> getVertices() {
         return vertices;
     }
+
+    public void zeraCores() {
+        for (Vertice vertice : this.getVertices()) {
+            vertice.setCor(-1);
+        }
+    }
 }

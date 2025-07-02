@@ -7,10 +7,6 @@ public class Dsatur {
         ArrayList<Vertice> vertices = grafo.getVertices();
         int n = vertices.size();
 
-        // Inicializa todas as cores como -1 (não colorido)
-        for (Vertice v : vertices) {
-            v.setCor(-1);
-        }
 
         // Saturação de cada vértice (quantidade de cores diferentes nos adjacentes)
         Map<Vertice, Integer> saturacao = new HashMap<>();
