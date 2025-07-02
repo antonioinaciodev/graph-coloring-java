@@ -1,35 +1,34 @@
+import java.util.ArrayList;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        Grafo grafo = new Grafo();
-        int[] aresta = new int[2];
-        
-        for(int i=1;i<10;i++){
-
-            aresta[0] = i;
-            aresta[1] = i+1;
-            grafo.addAresta(aresta);
-            System.err.print(aresta[0]);
-            System.err.print(',');
-            System.err.println(aresta[1]);
-        }
-
-        for(int i=10;i>2;i--){
-            aresta[0] = i;
-            aresta[1] = i-2;
-            grafo.addAresta(aresta);
-            System.err.print(aresta[0]);
-            System.err.print(',');
-            System.err.println(aresta[1]);
-
-        }
-
+        Exemplos ex = new Exemplos();
+        Guloso GL = new Guloso();
         Welsh_Powell WP = new Welsh_Powell();
         Dsatur DS = new Dsatur();
-        int numCores_WP = WP.WelshPowell(grafo);
-        int numCores_DS = DS.dsatur(grafo);
 
-        System.err.println(numCores_WP);
-        System.err.println(numCores_DS);
+        ArrayList<Long> TemposGulosos = new ArrayList<Long>();
+        ArrayList<Long> TemposWelshPowell = new ArrayList<Long>();
+        ArrayList<Long> TemposDsatur = new ArrayList<Long>();
+
+
+        ArrayList<Grafo> listaGrafos = ex.grafos10();
+
+        for (Grafo grafo : listaGrafos) {
+            long temp_ini = System.nanoTime();
+            int num_cores = WP.WelshPowell(grafo);
+            long temp_fim = System.nanoTime();
+            TemposWelshPowell.add(temp_fim-temp_ini);
+        }
+        System.err.println(calcularMedia(TemposWelshPowell) + " nanosegundos");
         
+    }
+
+    public static double calcularMedia(ArrayList<Long> tempos) {
+        long soma = 0;
+        for (long t : tempos) {
+            soma += t;
+        }
+        return (double) soma / tempos.size();
     }
 }

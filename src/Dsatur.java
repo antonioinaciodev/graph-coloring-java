@@ -12,7 +12,6 @@ public class Dsatur {
             v.setCor(-1);
         }
 
-        // aqui
         // Saturação de cada vértice (quantidade de cores diferentes nos adjacentes)
         Map<Vertice, Integer> saturacao = new HashMap<>();
         for (Vertice v : vertices) {
