@@ -47,7 +47,6 @@ O projeto não utiliza gerenciadores de dependência externos (puro Java). Para 
 3. **Execute a classe Main:**
    ```bash
    java -cp bin Main
-   
-```
+   ```
 
 *(Nota: Se estiver usando o VS Code ou Eclipse, basta clicar em "Run" diretamente na classe `Main.java`).*
