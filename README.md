@@ -16,16 +16,38 @@ Em vez de utilizar uma classe principal inflada com múltiplos blocos de `if/els
 
 Cada algoritmo é uma "estratégia" que assina esse contrato, permitindo que o maestro (`Main.java`) execute qualquer algoritmo de forma polimórfica, isolando a lógica matemática do motor de testes.
 
+```text
+graph-coloring-java/
+├── src/                          
+│   ├── ColoringAlgorithm.java    # Interface (Strategy Contract)
+│   ├── Dsatur.java               # Implementação DSatur
+│   ├── Greedy.java               # Implementação Guloso
+│   ├── WelshPowell.java          # Implementação Welsh-Powell
+│   ├── Graph.java                # Estrutura de dados do Grafo
+│   ├── Vertex.java               # Estrutura de dados do Vértice
+│   ├── GraphExamples.java        # Bateria de testes (Grafos Adensados)
+│   └── Main.java                 # Motor de execução e benchmarks
+└── README.md                     
+```
+
 ## ⚙️ Como Executar
 O projeto não utiliza gerenciadores de dependência externos (puro Java). Para rodar a bateria de testes via terminal:
 
-Compile todos os arquivos .java da pasta src:
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/antonioinaciodev/graph-coloring-java.git
+   cd graph-coloring-java
+   ```
 
-Bash
-javac -d bin src/*.java
+2. **Compile todos os arquivos `.java` da pasta `src`:**
+   ```bash
+   javac -d bin src/*.java
+   ```
 
-2. Execute a classe Main:
+3. **Execute a classe Main:**
    ```bash
    java -cp bin Main
    
-(Nota: Se estiver usando o VS Code ou Eclipse, basta clicar em "Run" diretamente na classe Main.java).
+```
+
+*(Nota: Se estiver usando o VS Code ou Eclipse, basta clicar em "Run" diretamente na classe `Main.java`).*
